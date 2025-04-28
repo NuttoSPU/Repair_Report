@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกการแจ้งซ่อม</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap');
+        * {
+        font-family: "Pridi", serif;
+        font-weight: 300;
+        font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            Swal.fire({
+                icon: '{{ message.tags }}',
+                title: '{{ message }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">RepairReport</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">หน้าแรก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/about">เกี่ยวกับเรา</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container p-3">
+            <section class="team-section">
+                <h2>ผู้จัดทำ</h2>
+                <div class="team-container">
+                    <div class="team-member">
+                        <img src="{% static 'img/img3.jpg' %}" alt="">
+                        <h3>67091556</h3>
+                        <p class="title">นาย ปราโมท ดำคราม</p>
+                        <p class="content"></p>
+                    </div>
+                    <div class="team-member">
+                        <img src="{% static 'img/img1.jpg' %}" alt="">
+                        <h3>67125520</h3>
+                        <p class="title">นางสาว รวิสรา แสงใส</p>
+                        <p class="content"></p>
+                    </div>
+                    <div class="team-member">
+                        <img src="{% static 'img/img2.jpg' %}" alt="">
+                        <h3>67125537</h3>
+                        <p class="title">นาย วุฒติชัย พลขุนทด</p>
+                        <p class="content"></p>
+                    </div>
+                </div>
+            </section>
+      </div>
+
+    <footer class="bg-body-dark text-center text-lg-start">
+        <div class="text-center p-3 text-light" style="background-color: rgba(0, 0, 0, 0.85);">
+          Repair Report © 2025 Copyright
+          <br>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-2">
+                67091556    ปราโมท ดำคราม
+            </div>
+            <div class="col-2">
+                67125520    รวิสรา แสงใส
+            </div>
+            <div class="col-2">
+                67125537    วุฒติชัย พลขุนทด
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
+

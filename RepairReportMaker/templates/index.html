@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกการแจ้งซ่อม</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap');
+        * {
+        font-family: "Pridi", serif;
+        font-weight: 300;
+        font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            Swal.fire({
+                icon: '{{ message.tags }}',
+                title: '{{ message }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">RepairReport</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">หน้าแรก</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/about">เกี่ยวกับเรา</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container p-3">
+        <div class="card">
+            <div class="card-header"><h2>บันทึกการแจ้งซ่อม</h2></div>
+            <div class="card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">ชื่อหัวข้อ</span>
+                            <input type="text" class="form-control" placeholder="กรุณากรอกหัวข้อ" aria-label="กรุณากรอกหัวข้อ" aria-describedby="basic-addon1" name="Topic" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">อุปกรณ์</span>
+                            <input type="text" class="form-control" placeholder="กรุณากรอกอุปกรณ์" aria-label="กรุณากรอกอุปกรณ์" aria-describedby="basic-addon1" name="Computer_Equipment" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">ชื่อผู้แจ้ง</span>
+                            <input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" aria-label="กรุณากรอกชื่อ" aria-describedby="basic-addon1" name="User" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">ชื่อแผนก</span>
+                            <input type="text" class="form-control" placeholder="กรุณากรอกแผนก" aria-label="กรุณากรอกแผนก" aria-describedby="basic-addon1" name="Department" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
+                            <textarea class="form-control" placeholder="กรุณากรอกรายละเอียด" aria-label="กรุณากรอกรายละเอียด" aria-describedby="basic-addon1" name="Details"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" type="submit">บันทึก</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                
+            </div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <h3>รายการแจ้งซ่อม</h3>
+              </div>
+              <div class="col-3">
+                <input class="form-control" id="myInput1" type="text" placeholder="Search..">
+              </div>
+            </div>
+              
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">หัวข้อ</th>
+                  <th scope="col">อุปกรณ์</th>
+                  <th scope="col">ผู้แจ้ง</th>
+                  <th scope="col">แผนก</th>
+                  <th scope="col">รายละเอียด</th>
+                  <th scope="col">สถานะ</th>
+                  <th scope="col">วันที่เสีย</th>
+                </tr>
+              </thead>
+              <tbody id="myTable1">
+                  {% for Report in all_report %}
+                <tr>
+                  <th scope="row">{{Report.Topic}}</th>
+                  <td>{{Report.Computer_Equipment}}</td>
+                  <td>{{Report.User}}</td>
+                  <td>{{Report.Department}}</td>
+                  <td>{{Report.Details}}</td>
+                  <td>{{Report.Status}}</td>
+                  <td>{{Report.Date}}</td>
+                </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+              <a type="button" href="/admin_index" class="btn btn-warning text-light" onclick="myFunction(this)">Admin Login</a>
+          </div>
+        </div>
+    </div>
+    <footer class="bg-body-dark text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3 text-light" style="background-color: rgba(0, 0, 0, 0.85);">
+          Repair Report © 2025 Copyright
+          <br>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col-2">
+                67091556    ปราโมท ดำคราม
+            </div>
+            <div class="col-2">
+                67125520    รวิสรา แสงใส
+            </div>
+            <div class="col-2">
+                67125537    วุฒติชัย พลขุนทด
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <!-- Copyright -->
+      </footer>
+</body>
+</html>
+<script>
+  $(document).ready(function(){
+    $("#myInput1").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable1 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+    function myFunction(linkElement) {
+        event.preventDefault();
+        var password = prompt("กรุณาใส่รหัสผ่านAdmin")
+        if (password == '1234') {
+            Swal.fire({
+            title: "รหัสถูกต้อง",
+            timer: 2000,
+            timerProgressBar: true,
+            icon: "success",
+            draggable: true
+            }).then((result) => {
+                window.location.href = linkElement.href;
+            });
+            
+        }else{
+            Swal.fire({
+            icon: "error",
+            title: "รหัสไม่ถูกต้อง"
+            });
+        }
+        }
+    
+</script>

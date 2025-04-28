@@ -1,0 +1,74 @@
+{% extends "Admin_base.html"%}
+
+{% block title %}
+    <title>บันทึกการแจ้งซ่อม</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            Swal.fire({
+                icon: '{{ message.tags }}',
+                title: '{{ message }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <h3>รายการแจ้งซ่อม</h3>
+      </div>
+      <div class="col-3">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      </div>
+    </div>
+      
+  </div>
+  <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">หัวข้อ</th>
+            <th scope="col">อุปกรณ์</th>
+            <th scope="col">ผู้แจ้ง</th>
+            <th scope="col">แผนก</th>
+            <th scope="col">รายละเอียด</th>
+            <th scope="col">สถานะ</th>
+            <th scope="col">วันที่เสีย</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+            {% for Report in all_report %}
+          <tr>
+            <th scope="row">{{Report.Topic}}</th>
+            <td>{{Report.Computer_Equipment}}</td>
+            <td>{{Report.User}}</td>
+            <td>{{Report.Department}}</td>
+            <td>{{Report.Details}}</td>
+            <td>{{Report.Status}}</td>
+            <td>{{Report.Date}}</td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
+{% endblock %}

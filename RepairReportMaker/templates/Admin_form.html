@@ -1,0 +1,60 @@
+{% extends "Admin_base.html"%}
+
+{% block title %}
+    <title>บันทึกการแจ้งซ่อม</title>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header"><h2>บันทึกการแจ้งซ่อม</h2></div>
+    <div class="card-body">
+        <form action="/admin_form" method="post">
+            {% csrf_token %}
+            <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ชื่อหัวข้อ</span>
+                    <input type="text" class="form-control" placeholder="กรุณาระบุหัวข้อ" aria-label="กรุณาระบุหัวข้อ" aria-describedby="basic-addon1" name="Topic" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">อุปกรณ์</span>
+                    <input type="text" class="form-control" placeholder="กรุณาระบุอุปกรณ์" aria-label="กรุณาระบุอุปกรณ์" aria-describedby="basic-addon1" name="Computer_Equipment" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ชื่อผู้แจ้ง</span>
+                    <input type="text" class="form-control" placeholder="กรุณากรองชื่อ" aria-label="กรุณากรองชื่อ" aria-describedby="basic-addon1" name="User" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ชื่อแผนก</span>
+                    <input type="text" class="form-control" placeholder="กรุณากรองแผนก" aria-label="กรุณากรองแผนก" aria-describedby="basic-addon1" name="Department" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
+                    <textarea class="form-control" placeholder="กรุณาใส่รายละเอียด" aria-label="กรุณาใส่รายละเอียด" aria-describedby="basic-addon1" name="Details"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" type="submit">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </form>
+        
+    </div>
+</div>
+{% endblock %}

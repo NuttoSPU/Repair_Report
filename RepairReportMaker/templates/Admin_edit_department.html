@@ -1,0 +1,23 @@
+{% extends "Admin_base.html"%}
+
+{% block title %}
+    <title>บันทึกการแจ้งซ่อม</title>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="card">
+        <div class="card-header"><h3>แก้ไขข้อมูลแผนก</h3></div>
+        <div class="card-body p-3">
+            {% csrf_token %}
+            
+            {{ form.name }}
+            <br>
+            <!-- {{ form.as_p }} -->
+        <button type="submit" class="btn btn-success">บันทึกการแก้ไข</button>
+        </div>
+    </div>
+    
+
+</form>
+{% endblock %}

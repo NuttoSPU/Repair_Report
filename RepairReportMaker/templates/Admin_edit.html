@@ -1,0 +1,89 @@
+{% extends "Admin_base.html"%}
+
+{% block title %}
+    <title>บันทึกการแจ้งซ่อม</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <h3>รายการแจ้งซ่อม</h3>
+      </div>
+      <div class="col-3">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      </div>
+    </div>
+      
+  </div>
+  <div class="card-body">
+      <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">หัวข้อ</th>
+      <th scope="col">อุปกรณ์</th>
+      <th scope="col">ผู้แจ้ง</th>
+      <th scope="col">แผนก</th>
+      <th scope="col">รายละเอียด</th>
+      <th scope="col">สถานะ</th>
+      <th scope="col">วันที่เสีย</th>
+      <th scope="col">แก้ไข</th>
+      <th scope="col">ลบ</th>
+    </tr>
+  </thead>
+  <tbody id="myTable">
+      {% for Report in all_report %}
+    <tr>
+      <th scope="row">{{Report.Topic}}</th>
+      <td>{{Report.Computer_Equipment}}</td>
+      <td>{{Report.User}}</td>
+      <td>{{Report.Department}}</td>
+      <td>{{Report.Details}}</td>
+      <td>{{Report.Status}}</td>
+      <td>{{Report.Date}}</td>
+      <td><a href="{% url 'edit_report' Report.pk %}" class="btn btn-warning">แก้ไข</a></td>
+      <td><a href="{% url 'del_report' Report.pk %}" class="btn btn-danger" onclick="return myFunction(this)">ลบ</a></td>
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
+  </div>
+</div>
+
+<script>
+  function myFunction(linkElement) {
+    event.preventDefault(); // ป้องกันลิงก์ทำงานทันที
+  
+    Swal.fire({
+      title: "คุณแน่ใจหรือไม่?",
+      text: "ลบแล้วไม่สามารถกู้คืนได้!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "ใช่, ลบเลย!",
+      cancelButtonText: "ยกเลิก"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // ลบเรียบร้อย ไปที่ URL ลิงก์
+        window.location.href = linkElement.href;
+      }
+    });
+  
+    return false; // ป้องกันการ redirect ทันที
+  }
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
+{% endblock %}

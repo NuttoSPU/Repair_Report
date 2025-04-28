@@ -1,0 +1,71 @@
+{% extends "Admin_base.html"%}
+
+{% block title %}
+    <title>บันทึกการแจ้งซ่อม</title>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="card">
+        <div class="card-header"><h3>แก้ไขข้อมูลรายการซ่อม</h3></div>
+        <div class="card-body p-3">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ชื่อหัวข้อ</span>
+                        {{ form.Topic }}                    
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">อุปกรณ์</span>
+                        {{ form.Computer_Equipment }}                    
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ชื่อผู้แจ้ง</span>
+                        {{ form.User }}                    
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">แผนก</span>
+                        {{ form.Department }}                    
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">สถานะ</span>
+                        {{ form.Status }}                    
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">รายละเอียด</span>
+                        {{ form.Details }}                    
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">บันทึกการแก้ไข</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            
+        
+        </div>
+    </div>
+    
+
+</form>
+{% endblock %}
