@@ -18,5 +18,5 @@
 
 ### 1. Clone โปรเจค
 ```bash
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/NuttoSPU/Repair_Report.git
 cd your-project
