@@ -41,6 +41,7 @@ python manage.py runserver
   <summary>และทำการกรอกรหัสให้ถูกต้อง</summary>(1234)
 </details>
 
+## ส่วนหน้าหลักของ Admin
 ![ตารางรายงานแจ้งซ่อมของ Admin](Readme_Img/Screenshot4.png)
 เมื่อเข้าสู่ระบบหลังบ้าน ก็จะพบกับ ตารางรายงานแจ้งซ่อม โดย Admin จะสามารถ แก้ไขข้อมูล Update สถานะ หรือ ลบรายงานแจ้งซ่อมได้
 ![ตารางรายงานแจ้งซ่อมของ Admin](Readme_Img/Screenshot5.png)
